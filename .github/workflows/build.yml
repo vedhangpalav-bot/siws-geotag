@@ -15,10 +15,10 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - run: mkdir -p www && cp index.html piexif.js www/
+      - run: mkdir -p www && cp app.html www/index.html && cp piexif.js www/
       - run: npm install
       - run: npx cap add android
-      - run: python3 patch_manifest.py
+      - run: python3 patch_android.py
       - run: npx cap sync android
       - run: cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
